@@ -26,12 +26,25 @@ db.query(`SELECT * FROM candidates`, (err, rows) => {
     // console.log(rows);
 });
 
-// shows all candidates 
+// shows A single candidate
 db.query(`SELECT * FROM candidates WHERE id = 1`, (err, row) => {
     if (err) {
         console.log(err);
     }
+    //! uncomment
     // console.log(row);
+});
+
+// create candidate
+const sql = `INSERT INTO candidates (id, first_name, last_name, industry_connected)
+                VALUES (?,?,?,?)`;
+const params = [1,'Ronald', 'Firbank', 1];
+
+db.query(sql, params, (err, result) => {
+    if (err) {
+        console.log(err);
+    }
+    console.log(result);
 });
 
 //delete candidate, the '?' is a place holder 
@@ -39,7 +52,8 @@ db.query(`DELETE FROM candidates WHERE id = ?`, 1, (err, result) => {
     if (err) {
         console.log(err);
     }
-    console.log(result);
+    //! uncomment
+    // console.log(result);
 });
 
 
