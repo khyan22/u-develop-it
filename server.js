@@ -20,9 +20,28 @@ const db = mysql.createConnection(
     console.log('Connection to election database established.')
 );
 
+//shows all candidates
 db.query(`SELECT * FROM candidates`, (err, rows) => {
-    console.log(rows);
+    //! uncomment
+    // console.log(rows);
 });
+
+// shows all candidates 
+db.query(`SELECT * FROM candidates WHERE id = 1`, (err, row) => {
+    if (err) {
+        console.log(err);
+    }
+    // console.log(row);
+});
+
+//delete candidate, the '?' is a place holder 
+db.query(`DELETE FROM candidates WHERE id = ?`, 1, (err, result) => {
+    if (err) {
+        console.log(err);
+    }
+    console.log(result);
+});
+
 
 // Default response for any other request (not found)
 app.use((req, res) => {
